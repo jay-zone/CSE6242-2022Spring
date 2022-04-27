@@ -1,0 +1,46 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+table > caption {
+  margin-bottom: 10px;
+}
+
+table > caption > h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0 0 0 0;
+}
+
+thead {
+  border-bottom: 1px solid black;
+  background-color: #DCDCDC;
+}
+
+thead th {
+  font-weight: bold;
+  text-align: left;
+}
+
+td, th {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+tbody > tr:first-child {
+  border-top: 1.5px solid black;
+}
+
+tbody tr:hover {
+  background-color: #F5F5F5;
+}
+
+tbody tr.star-trek {
+  font-style: italic;
+  color: blue;
+}

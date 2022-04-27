@@ -1,0 +1,71 @@
+{#- This is a Jinja template - Flask uses Jinja as its templating engine. Jinja
+    will process this file looking for directives to define a template based on
+    the passed-in variables. This template relies on the `table`, `header`, and
+    `username` variables to be declared.
+    
+    A Jinja directive will start with a "{%" and Jinja comments will begin with
+    a "{#". Both are ended with the same symbol and the closing brace "}".
+    
+    If a dash "-" is provided before the opening or closing symbol for a
+    directive, Jinja will ignore all whitespace up to that side of the directive
+    in the template. -#}
+<!doctype html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <title>Flask Example</title>
+  <link rel="stylesheet" href="/static/style.css">
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Routray, Susanta K</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:xd_Signature msdt:dt="string"></mso:xd_Signature>
+<mso:Order msdt:dt="string">313600.000000000</mso:Order>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:TemplateUrl msdt:dt="string"></mso:TemplateUrl>
+<mso:xd_ProgID msdt:dt="string"></mso:xd_ProgID>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Routray, Susanta K</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:ContentTypeId msdt:dt="string">0x01010033D4B788F9772E49A665D8B9A341D2C5</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:MediaLengthInSeconds msdt:dt="string"></mso:MediaLengthInSeconds>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+  <table>
+    <caption>
+      <h1>Movies</h1>
+      {#- Templates can output variables inside {{...}}, like below  #}
+      <small>Data wrangled by {{username}}</small>
+    </caption>
+    <thead>
+      <tr>
+      {#- Templates can also iterate over variables, producing the contents
+          of the template (between the "for" and the "endfor" directives) for
+          each element in the specified collection #}
+      {%- for col in header %}
+        <th>{{ col }}</th>
+      {%- endfor %}
+      </tr>
+    </thead>
+    <tbody>
+    {%- for row in table %}
+      {#- It is also possible to add "if" statements, the contents of these
+          templates (between the "if" and "endif" directives) are inserted only
+          if the supplied statement evaluates to `True`.
+
+          The directive in the line below will only add the class "star-trek"
+          if the title contains the string "Star Trek" exactly. #}
+      <tr {%- if 'Star Trek' in row[1] %} class='star-trek' {%- endif %}>
+      {%- for col in row %}
+        <td>{{ col }}</td>
+      {%- endfor %}
+      </tr>
+    {%- endfor -%}
+    </tbody>
+  </table>
+</body>
+</html>
